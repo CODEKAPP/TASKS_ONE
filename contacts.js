@@ -1,12 +1,11 @@
 const fs = require("fs");
 const path = require("path");
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 const contactsPath = path.join(__dirname, "./db/contacts.json");
-require('colors');
+require("colors");
 
 // Function to list contacts
 function listContacts() {
-  // ...tu código
   fs.readFile(contactsPath, "utf-8", (error, data) => {
     if (error) {
       throw error;
@@ -19,7 +18,6 @@ function listContacts() {
 
 // Function to get a contact by ID
 function getContactById(contactId) {
-  // ...tu código
   fs.readFile(contactsPath, "utf-8", (error, data) => {
     if (error) {
       throw error;
@@ -62,6 +60,7 @@ function removeContact(contactId) {
             throw error;
           }
           console.log(`Contact with ID ${contactId} removed.`.rainbow);
+          console.table([contactId]);
         }
       );
     } else {
@@ -97,7 +96,8 @@ function addContact(name, email, phone) {
         if (error) {
           throw error;
         }
-        console.log(`Contact added: ${JSON.stringify(newContact)}`.green);
+        // console.log(`Contact added: ${JSON.stringify(newContact)}`.green);
+        console.table([newContact]);
       }
     );
   });
